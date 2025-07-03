@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Home | Organ Donor Finder{% endblock %}
+{% block content %}
+  <div class="card-container">
+    <div class="glass card">
+      <img src="https://cdn-icons-png.flaticon.com/256/1430/1430402.png" alt="Patient Icon">
+      <h2>Patient</h2>
+      <a class="button" href="{{ url_for('patient_register') }}">Register</a>
+      <a class="button" href="{{ url_for('patient_login') }}">Login</a>
+    </div>
+    <div class="glass card" style="width: 200px;">
+      <img src="https://cdn-icons-png.flaticon.com/512/6890/6890395.png" alt="Hospital Icon">
+      <h2>Hospital</h2>
+      <a class="button" href="{{ url_for('hospital_login') }}">Login</a>
+    </div>
+  </div>
+{% endblock %}

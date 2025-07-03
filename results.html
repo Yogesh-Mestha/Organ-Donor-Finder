@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Matches{% endblock %}
+{% block content %}
+  <div class="glass" style="max-width:700px; margin:32px auto; padding:24px;">
+    <h2>Matching Donors</h2>
+    {% if matches %}
+      <div class="cards-container">
+        {% for m in matches %}
+          <div class="glass card" style="max-width:400px;">
+            <h3>{{ m.Name }}</h3>
+            <p><strong>Age:</strong> {{ m.Age }}</p>
+            <p><strong>Blood:</strong> {{ m['Blood Type'] }}</p>
+            <p><strong>Organ:</strong> {{ m['Organ Type'] }}</p>
+            <p><strong>HLA:</strong> {{ m['HLA Typing'] }}</p>
+            <p><strong>BMI:</strong> {{ m.BMI }}</p>
+            <p><strong>City:</strong> {{ m.City }}, {{ m.State }}</p>
+            <p><strong>Hospital:</strong> {{ m.Hospital }}</p>
+            <form action="{{ url_for('patient_request') }}" method="POST">
+              {% for k,v in m.items() %}<input type="hidden" name="{{ k.replace(' ','_') }}" value="{{ v }}">{% endfor %}
+              <button type="submit" class="button">Request</button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No matches found.</p>
+    {% endif %}
+    <div style="text-align:center;"><a class="button" href="{{ url_for('search') }}">Back to Search</a></div>
+  </div>
+{% endblock %}

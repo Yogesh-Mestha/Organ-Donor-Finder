@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Handle Requests{% endblock %}
+{% block content %}
+  <div class="glass" style="width:750px; margin:32px auto; padding:24px;">
+    <h2>Patient Requests for {{ session['hospital_name'] }}</h2>
+    {% if requests %}
+      <table>
+        <thead><tr><th>#</th><th>Patient ID</th><th>Donor</th><th>City</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          {% for req in requests %}<tr>
+            <td>{{ req.id }}</td>
+            <td>{{ req.patient_id }}</td>
+            <td>{{ req.donor_name }}</td>
+            <td>{{ req.city }}, {{ req.state }}</td>
+            <td>{{ req.status }}</td>
+            <td>
+              <form method="POST" style="display:inline;"><input type="hidden" name="req_id" value="{{ req.id }}"><button type="submit" name="action" value="accept" class="button" style="width: 150px;">Accept</button></form>
+              <form method="POST" style="display:inline"><input type="hidden" name="req_id" value="{{ req.id }}"><button type="submit" name="action" value="reject" class="button" style="width: 150px;">Reject</button></form>
+            </td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No requests yet.</p>
+    {% endif %}
+    <div style="text-align:center;"><a class="button" href="{{ url_for('hospital_dashboard') }}">Back</a></div>
+  </div>
+{% endblock %}

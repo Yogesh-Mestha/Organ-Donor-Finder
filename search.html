@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Find Donor{% endblock %}
+{% block content %}
+  <div class="glass" style="width:600px; margin:32px auto; padding:32px;">
+    <h2>Find My Donor</h2>
+    <form action="{{ url_for('find_donor') }}" method="POST">
+      <label>Blood Type<br><input name="blood_type" required></label>
+      <label>HLA Typing<br><input name="hla_typing" required></label>
+      <label>Organ Type<br><input name="organ_type" required></label>
+      <label>BMI<br><input type="number" step="0.1" name="bmi" required></label>
+      <label>Age<br><input type="number" name="age" required></label>
+      <label>State<br><select name="state" id="state" required><option value="" >--Select--</option>{% for s in states %}<option>{{ s }}</option>{% endfor %}</select></label>
+      <label>City<br><select name="city" id="city" required><option>--Select State First--</option></select></label>
+      <button type="submit" class="button">Search</button>
+    </form>
+    <div style="text-align:center;"><a class="button" href="{{ url_for('patient_dashboard') }}">Back</a></div>
+    <script>
+      const citiesByState = {{ cities_by_state|tojson }};
+      document.getElementById('state').addEventListener('change', e => {
+        const opts=['<option value="">--Select--</option>'];
+        (citiesByState[e.target.value]||[]).forEach(c=>opts.push(`<option>${c}</option>`));
+        document.getElementById('city').innerHTML=opts.join('');
+      });
+    </script>
+  </div>
+{% endblock %}

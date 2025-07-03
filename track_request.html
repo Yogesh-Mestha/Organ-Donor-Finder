@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Your Requests{% endblock %}
+{% block content %}
+  <div class="glass" style="width:800px; margin:32px auto; padding:24px;">
+    <h2>Your Requests</h2>
+    {% if requests %}
+      <table>
+        <tr><th>#</th><th>Donor</th><th>Hospital</th><th>Status</th></tr>
+        {% for req in requests %}
+          <tr><td>{{ req.id }}</td><td>{{ req.donor_name }}</td><td>{{ req.hospital_name }}</td><td>{{ req.status }}</td></tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>No requests yet.</p>
+    {% endif %}
+    <div style="text-align:center;"><a class="button" href="{{ url_for('patient_dashboard') }}">Back</a></div>
+  </div>
+{% endblock %}

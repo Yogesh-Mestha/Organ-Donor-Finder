@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Organ Donor Finder{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+  <header class="glass" style="padding:24px; text-align:center; max-width:700px; margin: auto;">
+    <h1>Organ Donor Finder</h1>
+    <p>Connecting Lives with Compassion and Precision</p>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    &copy; 2023 Organ Donor Finder. All rights reserved.
+  </footer>
+</body>
+</html>

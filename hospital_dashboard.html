@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Hospital Dashboard{% endblock %}
+{% block content %}
+  <div class="glass" style="width:500px; margin:32px auto; padding:24px; text-align:center;">
+    <h2>{{ hospital_name }}</h2>
+    <nav>
+      <a class="button" href="{{ url_for('add_donor') }}">Add Donor</a>
+      <a class="button" href="{{ url_for('hospital_requests') }}">View Requests</a>
+      <a class="button" href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </div>
+{% endblock %}

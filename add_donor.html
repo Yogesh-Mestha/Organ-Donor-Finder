@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Add Donor{% endblock %}
+{% block content %}
+  <div class="glass" style="width:600px; margin:32px auto; padding:24px;">
+    <h2>Add Donor</h2>
+    <form method="POST">
+      <label>Name<br><input name="donor_name" required></label>
+      <label>Age<br><input type="number" name="age" required></label>
+      <label>Gender<br><select name="gender"><option>Male</option><option>Female</option></select></label>
+      <label>Blood Type<br><input name="blood_type" required></label>
+      <label>Organ Type<br><input name="organ_type" required></label>
+      <label>HLA Typing<br><input name="hla_typing" required></label>
+      <label>Rh Factor<br><select name="rh_factor"><option value="Positive">Positive</option><option value="Negative">Negative</option></select></label>
+      <label>BMI<br><input type="number" step="0.1" name="bmi" required></label>
+      <label>State<br><input name="state" required></label>
+      <label>City<br><input name="city" required></label>
+      <label>Cause of death<br><input name="cause_of_death"></label>
+      <label>Health condition<br><input name="health_condition"></label>
+      <button type="submit" class="button">Add Donor</button>
+    </form>
+    <div style="text-align:center;"><a class="button" href="{{ url_for('hospital_dashboard') }}">Back</a></div>
+  </div>
+{% endblock %}
